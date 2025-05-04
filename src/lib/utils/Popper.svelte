@@ -198,7 +198,10 @@
     invoker = triggerEls[0];
 
     triggerEls.forEach((element: HTMLElement) => {
-      if (element.tabIndex < 0) element.tabIndex = 0; // trigger must be focusable
+      // Only force focusable if tooltip is triggered by focus
+      if (trigger.includes('focus') && element.tabIndex < 0) {
+        element.tabIndex = 0;
+      }
       for (const [name, handler, cond] of events) if (cond) element.addEventListener(name, handler);
     });
 
