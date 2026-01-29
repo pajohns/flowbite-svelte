@@ -21,8 +21,9 @@
     class: className,
     classes,
     headerClass,
-    contentClass
-  }: AccordionItemProps = $props();
+    contentClass,
+    headingTag = 'h2'
+  }: AccordionItemProps & { headingTag?: 'h2' | 'h3' | 'div' } = $props();
 
   warnThemeDeprecation(
     "AccordionItem",
@@ -70,7 +71,7 @@
   let buttonClass = $derived(clsx(open && !ctx?.flush && (styling.active || ctx?.activeClass || active()), !open && !ctx?.flush && (styling.inactive || ctx?.inactiveClass || inactive())));
 </script>
 
-<h2 class={base({ class: clsx(theme?.base, className) })}>
+<svelte:element this={headingTag} class={base({ class: clsx(theme?.base, className) })}>
   <button type="button" onclick={handleToggle} class={button({ class: clsx(buttonClass, theme?.button, styling.button) })} aria-expanded={open}>
     {#if header}
       {@render header()}
@@ -91,7 +92,7 @@
       {/if}
     {/if}
   </button>
-</h2>
+</svelte:element>
 
 {#if useTransition}
   {#if open && transitionType !== "none"}
@@ -128,4 +129,5 @@
 @prop classes
 @prop headerClass
 @prop contentClass
+@prop headingTag = 'h2' - The HTML element to wrap the accordion header ('h2' | 'h3' | 'div')
 -->
