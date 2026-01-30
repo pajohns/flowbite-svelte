@@ -1320,7 +1320,9 @@ export interface ProgressbarProps extends ProgressbarVariants, Omit<HTMLAttribut
   animate?: boolean;
   size?: string;
   labelInside?: boolean;
+  labelInsideClass?: string;
   labelOutside?: string;
+  outsideSpanClass?: string;
   easing?: EasingFunction;
 }
 

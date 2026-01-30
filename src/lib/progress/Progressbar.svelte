@@ -13,7 +13,9 @@
     animate = false,
     size = "h-2.5",
     labelInside = false,
+    labelInsideClass,
     labelOutside = "",
+    outsideSpanClass,
     easing = cubicOut,
     color = "primary",
     class: className,
@@ -50,13 +52,13 @@
 
 {#if labelOutside}
   <div {...restProps} class={outside({ class: clsx(theme?.outside, classes?.outside) })}>
-    <span class={span({ class: clsx(theme?.span, classes?.span) })}>{labelOutside}</span>
+    <span class={span({ class: clsx(theme?.span, classes?.span, outsideSpanClass) })}>{labelOutside}</span>
     <span class={progressCls({ class: clsx(theme?.progressCls, classes?.progressCls) })}>{progress}%</span>
   </div>
 {/if}
 <div {...restProps} class={base({ class: clsx(size, theme?.base, className) })}>
   {#if labelInside}
-    <div class={labelInsideCls({ class: clsx(size, theme?.label, classes?.label) })} style="width: {_progress.current}%">
+      <div class={labelInsideCls({ class: clsx(size, theme?.label, classes?.label, labelInsideClass) })} style="width: {_progress.current}%">
       {_progress.current.toFixed(precision)}%
     </div>
   {:else}
@@ -76,7 +78,9 @@
 @prop animate = false
 @prop size = "h-2.5"
 @prop labelInside = false
+@prop labelInsideClass - Custom classes for the label inside the progress bar
 @prop labelOutside = ""
+@prop outsideSpanClass - Custom classes for the outside label span
 @prop easing = cubicOut
 @prop color = "primary"
 @prop class: className
