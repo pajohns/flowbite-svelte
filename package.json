@@ -1,6 +1,6 @@
 {
   "name": "@pajohns/flowbite-svelte",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Webapps global fork of flow-bite-svelte with customisation changes",
   "main": "dist/index.js",
   "author": {
