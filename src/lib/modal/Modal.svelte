@@ -50,7 +50,7 @@
 <Dialog
   bind:open
   {transition}
-  dismissable={dismissable && !title && !permanent}
+  dismissable={dismissable && !title && !header && !permanent}
   transitionParams={paramsOptions}
   {classes}
   {permanent}
@@ -61,11 +61,11 @@
     <div class={headerCls({ class: clsx(theme?.header, styling.header) })}>
       {#if title}
         <h3>{title}</h3>
-        {#if dismissable && !permanent}
-          <CloseButton type="submit" formnovalidate class={clsx(styling.close)} />
-        {/if}
       {:else if header}
         {@render header()}
+      {/if}
+      {#if dismissable && !permanent}
+        <CloseButton type="submit" formnovalidate class={clsx(styling.close)} />
       {/if}
     </div>
   {/if}
