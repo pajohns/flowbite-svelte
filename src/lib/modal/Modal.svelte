@@ -50,7 +50,7 @@
 <Dialog
   bind:open
   {transition}
-  dismissable={dismissable && !title && !header && !permanent}
+  dismissable={false}
   transitionParams={paramsOptions}
   {classes}
   {permanent}
@@ -69,7 +69,10 @@
       {/if}
     </div>
   {/if}
-  <div class={body({ class: clsx(theme?.body, styling.body) })}>
+  <div class={body({ class: clsx(theme?.body, styling.body) })} style="position: relative;">
+    {#if dismissable && !permanent && !title && !header}
+      <CloseButton type="submit" formnovalidate class="absolute end-2.5 top-2.5 {clsx(styling.close)}" />
+    {/if}
     {@render children?.()}
   </div>
   {#if footer}
